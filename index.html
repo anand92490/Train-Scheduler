@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Scheduler</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="Assets/CSS/reset.css">
+    <link rel="stylesheet" href="Assets/CSS/style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="text-center">🚊 Train Scheduler   🚊</h1>
+                <h4 class="text-center"> Find the next scheduled Train</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="p-3 mb-2 bg-info text-white">⏱ Current Train Schedule</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="content">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Train Name</th>
+                                        <th>Destination</th>
+                                        <th>Frequency (min)</th>
+                                        <th>Next Arrival</th>
+                                        <th>Minutes Away</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableContent">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="p-3 mb-2 bg-info text-white">➕ Add Train</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form id="formID">
+                            <div class="form-group">
+                                <label for="trainName">Train Name</label>
+                                <input type="text" class="form-control" id="trainName" aria-describedby="trainName"
+                                    placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="trainDestination">Destination</label>
+                                <input type="text" class="form-control" id="trainDestination"
+                                    aria-describedby="trainDestination" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="firstTrainTime">First Train Time (HH:mm - military time)</label>
+                                <input type="text" class="form-control" id="firstTrainTime"
+                                    aria-describedby="firstTrainTime" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="frequency">Frequency (min)</label>
+                                <input type="number" class="form-control" id="frequency" aria-describedby="frequency"
+                                    placeholder="">
+                            </div>
+                            <button type="submit" class="btn btn-info btn-lg" id="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script type="text/javascript" src="Assets/javascript/app.js"></script>
+    
+
+</body>
+
+</html>
