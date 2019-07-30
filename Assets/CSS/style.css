@@ -1,3 +1,8 @@
 .jumbotron-fluid{
-    color: rgba(9, 59, 113, 0.783);
+    color:white;
+    background-color: rgba(1, 81, 150, 0.797);
+}
+
+body{
+    background-color: rgb(198, 230, 237);
 }
