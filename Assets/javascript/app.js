@@ -5,10 +5,8 @@
 //push the value to the database. (create firebase key to capture the values)  
 //capture the value of the input in the database snapshot.
 //use the moment.js method to set the variables and assign snapshot values for the first train, train freequency, First Time, Current Time, Difference between the times, Time apart (remainder), Minute Until Train and  Next Train
-//use the javascript if else logic to determine the next train based on the current time and the first train set up.
 //Create a new row ("<tr>"")to set the .text input snapshot values for train name, train destination, frequency, next arriaval and minutes away.
 //append those text values into the ("<tr>") and increment the index.
-//create a function to submit new row
 //create variables to hold the values for the new name, new destination and new frequency
 //get the database reference to set the new input values into its corresponding data attribute.
 
@@ -74,10 +72,12 @@ database.ref().on("child_added", function(childSnapshot){
     var currentTimeCal = currentTime.subtract(1, "years");
 
     var diffTime = moment().diff(moment(firstTrain), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
+    // console.log("DIFFERENCE IN TIME: " + diffTime);
 
     var timeRemainder = diffTime % trainFrequency;
-    console.log(timeRemainder);
+    // console.log(timeRemainder);
+
+    minutesRemaining = trainFrequency -timeRemainder;
 
     var tMinutesTillTrain = trainFrequency - timeRemainder;
     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
@@ -90,14 +90,15 @@ database.ref().on("child_added", function(childSnapshot){
     var newRow = $("<tr>");
     newRow.addClass("row-" + rowCount);
     
-    var nameInp = $("<td>").append(childSnapshot.val().name);
-    var destinationInp = $("<td>").append(childSnapshot.val().destination);
-    var freequencyInp = $("<td>").append(childSnapshot.val().frequency);
-    var nextTrainInp = $("<td>").append(childSnapshot.val().nextTrain);
-    var minutesRemainingInp = $("<td>").append(childSnapshot.val().minutesRemaining);
+    var nameInp = $("<td>").text(childSnapshot.val().name);
+    var destinationInp = $("<td>").text(childSnapshot.val().destination);
+    var freequencyInp = $("<td>").text(childSnapshot.val().frequency);
+    var nextTrainInp = $("<td>").text(nextTrain);
+    var minutesRemainingInp = $("<td>").text(minutesRemaining);
     
     newRow.append(nameInp).append(destinationInp).append(freequencyInp).append(nextTrainInp).append(minutesRemainingInp);
     $("#tableContent").append(newRow);
-    index++;    
+    rowCount++;
+    
 
 });
